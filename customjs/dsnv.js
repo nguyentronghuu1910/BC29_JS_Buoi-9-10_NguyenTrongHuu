@@ -15,8 +15,8 @@ function DanhSachNhanVien() {
       this.arr.push(nv);
    };
 
-   this.xoaNV = function (maNV) {
-      var index = this.timViTrinV(maNV);
+   this.xoaNV = function (taiKhoan) {
+      var index = this.timViTriNV(taiKhoan);
 
       //action delete
       if (index !== -1) {
@@ -24,8 +24,8 @@ function DanhSachNhanVien() {
       }
    };
 
-   this.suaNV = function (maNV) {
-      var index = this.timViTrinV(maNV);
+   this.suaNV = function (taiKhoan) {
+      var index = this.timViTriNV(taiKhoan);
       if (index !== -1) {
          return this.arr[index];
       }
@@ -34,26 +34,27 @@ function DanhSachNhanVien() {
 
    this.capNhat = function (nv) {
       //tim vi tri nv muon cap nhat
-      var index = this.timViTriNV(nv.maNV);
+      var index = this.timViTriNV(nv.taiKhoan);
       if (index !== -1) {
          this.arr[index] = nv;
       }
    };
 
-   this.timKiemNV = function (keyword) {
+   this.timKiemNV = function (searchName) {
       /**
        * 0. tao mangTimKiem = []
        * 1. duyet mang arr
-       * 2. neu item.tennV trung voiw keyword
+       * 2. neu item.loaiNV trung voi searchName
        *  => them nv dc tim thay vao mangTimKiem
        * 3. Tra ve mangTimKiem
        */
 
       var mangTimKiem = [];
       this.arr.forEach(function (item) {
-         // if (item.tenNV === keyword) {
+         // if (item.loaiNV === searchName) {
          //v2
-         if (item.tenNV.toLowerCase().includes(keyword.toLowerCase())) {
+         if (item.loaiNV.toLowerCase().
+            includes(searchName.toLowerCase())) {
             mangTimKiem.push(item);
          }
       });
