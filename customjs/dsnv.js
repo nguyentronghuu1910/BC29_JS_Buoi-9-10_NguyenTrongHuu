@@ -51,9 +51,9 @@ function DanhSachNhanVien() {
 
       var mangTimKiem = [];
       this.arr.forEach(function (item) {
-         // if (item.loaiNV === searchName) {
+         // if (item.xepLoaiNV === searchName) {
          //v2
-         if (item.loaiNV.toLowerCase().
+         if (item.xepLoaiNV.toLowerCase().
             includes(searchName.toLowerCase())) {
             mangTimKiem.push(item);
          }

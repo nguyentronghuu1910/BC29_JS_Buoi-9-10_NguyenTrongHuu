@@ -35,7 +35,7 @@ function Validation() {
       return false;
    }
    this.kiemTraChuoiKiTu = function (value, tbId, mess) {
-      var letter = "^[A-Za-z]+$";
+      var letter = "^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" + "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" + "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
       if (value.match(letter)) {
          // true
          getID(tbId).innerHTML = "";

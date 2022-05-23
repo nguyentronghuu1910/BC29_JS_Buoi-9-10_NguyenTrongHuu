@@ -23,7 +23,6 @@ function layThongTinNV(isAdd) {
    var _luongCoBan = getID("luongCB").value;
    var _chucvu = getID("chucvu").value;
    var _workingHours = getID("gioLam").value;
-
    // Flag - isValid là true hợp lệ / false: không hợp lệ.
    var isValid = true;
 
@@ -130,8 +129,9 @@ function layThongTinNV(isAdd) {
    );
 
    // Tinh tong luong
+   nhanVien.xepLoaiNhanVien()
    nhanVien.tinhTongLuong();
-
+   console.log(nhanVien);
    return nhanVien;
 }
 /**
@@ -160,9 +160,9 @@ function renderStaffTable(data) {
          <td>${item.tenNV}</td>
          <td>${item.email}</td>
          <td>${item.ngayLam}</td>
-         <td>${item.chucvu}</td>
-         <td>${item.tongLuong}</td>
-         <td>${item.loaiNV}</td>
+         <td>${item.chucVu}</td>
+         <td>${item.tongLuong.toLocaleString()}</td>
+         <td>${item.xepLoaiNV}</td>
          <td>
           <button class = "btn btn-success" data-toggle="modal" data-target="#myModal" onclick=" suaNV('${item.taiKhoan}')">Sửa</button>
           <button class = "btn btn-danger" onclick=" xoaNV('${item.taiKhoan}')">Xóa</button>
