@@ -20,3 +20,7 @@
 .myCardHeader, .myCardFooter{
 	background-color: transparent;       
 }
+
+#btnCapNhat,#refresh{
+  display: none;
+}

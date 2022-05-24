@@ -40,8 +40,6 @@ function NhanVien(
          this.xepLoaiNV = "Nhân viên khá";
       } else if (this.workingHours < 160) {
          this.xepLoaiNV = "Nhân viên trung bình";
-      } else {
-         this.xepLoaiNV = "không đủ điều kiện xếp loại nhân viên";
       }
    };
 

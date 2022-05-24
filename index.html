@@ -39,30 +39,36 @@
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="#homeSubmenu">
-                        <i class="fa fa-home"></i> Home
+                        <i class="fa fa-home"></i>
+                        Home
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-briefcase"></i> About
+                        <i class="fa fa-briefcase"></i>
+                        About
                     </a>
                     <a href="#pageSubmenu">
-                        <i class="fa fa-files-o"></i> Pages
+                        <i class="fa fa-files-o"></i>
+                        Pages
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-link"></i> Portfolio
+                        <i class="fa fa-link"></i>
+                        Portfolio
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-paperclip"></i> FAQ
+                        <i class="fa fa-paperclip"></i>
+                        FAQ
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-paper-plane"></i> Contact
+                        <i class="fa fa-paper-plane"></i>
+                        Contact
                     </a>
                 </li>
             </ul>
@@ -108,7 +114,12 @@
                             </div>
                             <div class="col-md-6 text-right">
                                 <button class="btn btn-primary" id="btnThem" data-toggle="modal"
-                                    data-target="#myModal">Thêm nhân viên</button>
+                                    data-target="#myModal">Thêm nhân viên
+                                </button>
+                                <button class="btn btn-success" id="refresh" onClick="window.location.reload();">
+                                    Refresh
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -153,6 +164,7 @@
                     <div class="card-footer myCardFooter">
                         <nav>
                             <ul class="pagination justify-content-center" id="ulPhanTrang">
+
                             </ul>
                         </nav>
                     </div>
@@ -256,11 +268,11 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
                                 </div>
-                                <select id="chucvu" class="form-control">
+                                <select class="form-control" id="chucvu">
                                     <option>Chọn chức vụ</option>
-                                    <option value="Sếp">Sếp</option>
-                                    <option value="Trưởng phòng">Trưởng phòng</option>
-                                    <option value="Nhân viên">Nhân viên</option>
+                                    <option>Sếp</option>
+                                    <option>Trưởng phòng</option>
+                                    <option>Nhân viên</option>
                                 </select>
                             </div>
 
@@ -319,6 +331,8 @@
             });
         });
     </script>
+
+    <!-- Custom JS  -->
     <script src="./customjs/nhanvien.js"></script>
     <script src="./customjs/dsnv.js"></script>
     <script src="./customjs/validation.js"></script>

@@ -13,7 +13,7 @@ function getID(id) {
 }
 
 
-function layThongTinNV(isAdd) {
+function layThongTinNV(doesAdd) {
    //Dom toi cac the input lay value
    var _taiKhoan = getID("tknv").value;
    var _tenNV = getID("name").value;
@@ -27,7 +27,7 @@ function layThongTinNV(isAdd) {
    var isValid = true;
 
    // Check validation
-   if (isAdd) {
+   if (doesAdd) {
       // Tai khoan NV
       isValid &= validation.kiemTraDoDaiKiTu
          (_taiKhoan,
@@ -48,14 +48,14 @@ function layThongTinNV(isAdd) {
       (_tenNV,
          "tbTen",
          "(*) Tên nhân viên phải là chữ, không để trống"
-      )
+      );
 
    // Email
    isValid &= validation.kiemTraEmail
       (_email,
          "tbEmail",
          "(*) Email phải đúng định dạng, không để trống"
-      )
+      );
 
    // Password
    isValid &= validation.kiemTraDoDaiKiTu
@@ -63,13 +63,13 @@ function layThongTinNV(isAdd) {
          "tbMatKhau",
          6,
          10,
-         "(*) mật Khẩu từ 6-10 ký tự (chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt), không để trống "
+         "(*) mật Khẩu từ 6-10 ký tự"
       ) && validation.kiemTraPassword
          (
             _pass,
             "tbMatKhau",
-            "(*) mật Khẩu từ 6-10 ký tự (chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt), không để trống "
-         )
+            "(*) Mật khẩu phải chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt "
+         );
 
    // Ngay lam
    isValid &= validation.kiemTraRong
@@ -77,42 +77,44 @@ function layThongTinNV(isAdd) {
          _ngayLam,
          "tbNgay",
          "(*) Ngày làm không để trống, định dạng mm/dd/yyyy"
-      )
+      );
 
    // luongCoBan
+
+   //chỗ lương cơ bản nên truyền thêm đối 2 đối số 1.000.000 - 20.000.000 nếu sai ko cho nhập
    isValid &= validation.kiemTraNumber
       (_luongCoBan,
          "tbLuongCB",
-         "(*) Lương cơ bản 1.000.000 - 20.000.000, không để trống"
-      ) && validation.kiemTraDoDaiKiTu
+         "(*) Vui lòng nhập lương cơ bản, không để trống"
+      ) && validation.kiemTraSoLuong
          (
             _luongCoBan,
             "tbLuongCB",
-            7,
-            8,
-            "(*) Lương cơ bản 1.000.000 - 20.000.000, không để trống"
-         )
+            1000000,
+            20000000,
+            "(*) Lương cơ bản 1.000.000 - 20.000.000, không nhập nhỏ hoặc lớn hơn"
+         );
+
 
    // Chuc vu
    isValid &= validation.kiemTraChucVu
       ("chucvu",
          "tbChucVu",
          "(*) Vui lòng chọn chức vụ hợp lệ (Giám đốc, Trưởng Phòng, Nhân Viên)"
-      )
-
+      );
    // WorkingHours
    isValid &= validation.kiemTraNumber
       (_workingHours,
          "tbGiolam",
-         "(*) Số giờ làm trong tháng 80 - 200 giờ, không để trống"
-      ) && validation.kiemTraDoDaiKiTu
+         "(*) Vui lòng nhập số giờ, không để trống"
+      ) && validation.kiemTraSoLuong
          (
             _workingHours,
             "tbGiolam",
-            2,
-            3,
-            "(*) Số giờ làm trong tháng 80 - 200 giờ, không để trống"
-         )
+            80,
+            200,
+            "(*) Số giờ làm trong tháng 80 - 200 giờ, không nhập nhỏ hoặc lớn hơn"
+         );
    // Check isValid
    if (!isValid) return;
 
@@ -129,7 +131,7 @@ function layThongTinNV(isAdd) {
    );
 
    // Tinh tong luong
-   nhanVien.xepLoaiNhanVien()
+   nhanVien.xepLoaiNhanVien();
    nhanVien.tinhTongLuong();
    console.log(nhanVien);
    return nhanVien;
@@ -146,7 +148,10 @@ getID("btnThemNV").onclick = function () {
       dsnv.themNV(nhanVien);
       renderStaffTable(dsnv.arr);
       setLocalStorage();
+      //hide btn#btnCapNhat
+      // getID("btnCapNhat").style.display = "none";
    }
+
 };
 
 function renderStaffTable(data) {
@@ -168,7 +173,7 @@ function renderStaffTable(data) {
           <button class = "btn btn-danger" onclick=" xoaNV('${item.taiKhoan}')">Xóa</button>
          </td>
       </tr>
-      `
+      `;
    });
    getID("tableDanhSach").innerHTML = content;
 
@@ -202,6 +207,15 @@ function suaNV(id) {
    }
    // disable input#tknv
    getID("tknv").disabled = true;
+
+   //hide btn#btnThemNV #btnCapNhat
+   getID("btnThemNV").style.display = "none";
+   getID("btnThem").style.display = "none";
+   //show btn#btnCapNhat
+   getID("btnCapNhat").style.display = "block";
+   getID("refresh").style.display = "inline";
+
+
 }
 
 /**
@@ -212,7 +226,7 @@ getID("btnCapNhat").onclick = function () {
    dsnv.capNhat(nhanVien);
    renderStaffTable(dsnv.arr);
    setLocalStorage();
-}
+};
 
 /**
  * Tim kiem NV 
@@ -221,7 +235,7 @@ getID("searchName").addEventListener("keyup", function () {
    var searchName = getID("searchName").value;
    var mangTimKiem = dsnv.timKiemNV(searchName);
    renderStaffTable(mangTimKiem);
-})
+});
 
 function setLocalStorage() {
    // Convert from JSON to String
