@@ -5,7 +5,7 @@ function NhanVien(
    _pass,
    _ngayLam,
    _luongCoBan,
-   _chucvu,
+   _chucVu,
    _workingHours,
 
 ) {
@@ -15,7 +15,7 @@ function NhanVien(
    this.pass = _pass;
    this.ngayLam = _ngayLam;
    this.luongCoBan = _luongCoBan;
-   this.chucVu = _chucvu;
+   this.chucVu = _chucVu;
    this.workingHours = _workingHours;
    this.tongLuong = 0;
    this.xepLoaiNV = "";
