@@ -24,3 +24,6 @@
 #btnCapNhat,#refresh{
   display: none;
 }
+#btnTimNV{
+  cursor: pointer;
+}

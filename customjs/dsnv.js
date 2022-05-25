@@ -26,18 +26,14 @@ function DanhSachNhanVien() {
 
    this.suaNV = function (taiKhoan) {
       var index = this.timViTriNV(taiKhoan);
-      if (index !== -1) {
-         return this.arr[index];
-      }
+      if (index !== -1) return this.arr[index];
       return null;
    };
 
    this.capNhat = function (nv) {
       //tim vi tri nv muon cap nhat
       var index = this.timViTriNV(nv.taiKhoan);
-      if (index !== -1) {
-         this.arr[index] = nv;
-      }
+      if (index !== -1) return this.arr[index] = nv;
    };
 
    this.timKiemNV = function (searchName) {
@@ -51,8 +47,6 @@ function DanhSachNhanVien() {
 
       var mangTimKiem = [];
       this.arr.forEach(function (item) {
-         // if (item.xepLoaiNV === searchName) {
-         //v2
          if (item.xepLoaiNV.toLowerCase().
             includes(searchName.toLowerCase())) {
             mangTimKiem.push(item);
